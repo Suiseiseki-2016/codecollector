@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "wasmcollector"
+version = "0.1.0"
+description = ""
+authors = ["Suiseiseki-2016 <wd050602@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+poetry-dotenv-plugin = "^0.2.0"
+pyyaml = "^6.0.2"
+pygithub = "^2.5.0"
+pygit = "^0.1"
+pyrepository = "^0.0.1"
+gitpython = "^3.1.43"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
