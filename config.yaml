@@ -1,3 +1,6 @@
 GITHUB:
   KEYWORD: WebAssembly
   SORTLIST: ["stars", "updated", "forks"]
+
+WEB:
+  KEYWORDS: ["WebAssembly", "wasm"]
