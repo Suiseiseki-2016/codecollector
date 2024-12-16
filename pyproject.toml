@@ -6,7 +6,7 @@ authors = ["Suiseiseki-2016 <wd050602@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = "^3.10"
 poetry-dotenv-plugin = "^0.2.0"
 pyyaml = "^6.0.2"
 pygithub = "^2.5.0"

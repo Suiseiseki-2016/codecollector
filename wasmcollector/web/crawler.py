@@ -74,20 +74,25 @@ async def main():
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
             context = await browser.new_context(user_agent=USER_AGENT)
-            semaphore = asyncio.Semaphore(8)  # 控制并发量
+            semaphore = asyncio.Semaphore(4)  # 控制并发量，减少资源占用
+            batch_size = 10  # 每批次处理的种子 URL 数量
 
             async def safe_crawl(url):
                 async with semaphore:
-                    await crawl_url(context, url, max_depth=3, max_breadth=5)
+                    await crawl_url(context, url, max_depth=2, max_breadth=3)
 
             with open(SEED_FILE, 'r') as f:
                 urls = f.read().strip().split("\n")
-                await asyncio.gather(*(safe_crawl(url) for url in urls))
+
+                # 分批次处理种子 URL
+                for i in range(0, len(urls), batch_size):
+                    batch_urls = urls[i:i + batch_size]
+                    await asyncio.gather(*(safe_crawl(url) for url in batch_urls))
 
             await browser.close()
         print(f"{timestamp()}Crawler completed.")
     except KeyboardInterrupt:
         print(f"{timestamp()}Crawler interrupted by user.")
-
+    
 if __name__ == "__main__":
     asyncio.run(main())

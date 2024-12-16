@@ -4,3 +4,4 @@ repos
 states
 poetry.lock
 .DS_Store
+*.pyc
